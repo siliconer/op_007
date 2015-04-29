@@ -52,6 +52,10 @@ function adjust() {
 			libo_lose_kelly = odds_data[index][10]	
 		}
 	}
+	libo_data(libo_win_per,high_init_win,low_init_win,libo_index,5)
+	libo_data(libo_tie_per,high_init_tie,low_init_tie,libo_index,6)
+	libo_data(libo_lose_per,high_init_lose,low_init_lose,libo_index,7)
+
 	for(index = 0;index < company_length;index++) {
 		// console.log("")
 		if (index != libo_index) {
@@ -66,7 +70,16 @@ function adjust() {
 
 }
 
-
+function libo_data(libo_per,high_init,low_init,libo_index,element_index) {
+	if ( libo_per > high_init*0.985 ) {
+			document.querySelectorAll("#dataList")[0].querySelectorAll("tr")[libo_index].querySelectorAll("td")[element_index].style.color ='Blue';
+			document.querySelectorAll("#dataList")[0].querySelectorAll("tr")[libo_index].querySelectorAll("td")[element_index].style.fontWeight ='bold'
+	} 
+	if (libo_per  < low_init*1.015) {
+			document.querySelectorAll("#dataList")[0].querySelectorAll("tr")[libo_index].querySelectorAll("td")[element_index].style.color ='Red';
+			document.querySelectorAll("#dataList")[0].querySelectorAll("tr")[libo_index].querySelectorAll("td")[element_index].style.fontWeight ='bold'
+	}
+}
 
 
 function handle_data(odds_data,libo_data,index,element_index,init_per,high_init,low_init,return_rate,win_kelly,tie_kelly,lose_kelly) {
